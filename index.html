@@ -19,7 +19,10 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -46,6 +49,7 @@
       backdrop-filter: blur(14px);
       background: rgba(247,248,251,0.84);
       border-bottom: 1px solid rgba(219,226,238,0.85);
+      transition: background 0.35s ease, border-color 0.35s ease;
     }
 
     .nav-inner {
@@ -141,7 +145,10 @@
       box-shadow: 0 10px 20px rgba(31,79,138,0.18);
     }
 
-    .btn-primary:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-primary:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
 
     .btn-secondary {
       background: rgba(255,255,255,0.8);
@@ -314,6 +321,30 @@
       font-size: 0.94rem;
     }
 
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px) scale(0.985);
+      transition:
+        opacity 0.85s ease,
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
     @media (max-width: 960px) {
       .hero-card,
       .grid-3,
@@ -371,7 +402,7 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <div class="hero-card">
+        <div class="hero-card reveal">
           <div class="hero-copy">
             <div class="name-block">
               <h1>Mingxia Guo</h1>
@@ -389,10 +420,10 @@
             </div>
           </div>
           <div class="hero-side">
-            <div class="portrait-card">
+            <div class="portrait-card reveal">
               <img class="portrait" src="profile.jpg" alt="Portrait of Mingxia Guo" />
             </div>
-            <div class="mini-card">
+            <div class="mini-card reveal">
               <h3>Focus Areas</h3>
               <ul>
                 <li>Peptide and protein crystallization</li>
@@ -409,7 +440,7 @@
     <section>
       <div class="wrap">
         <div class="grid-2">
-          <div class="section-card" id="about">
+          <div class="section-card reveal" id="about">
             <div class="section-head">
               <h2>About</h2>
             </div>
@@ -424,12 +455,12 @@
             </p>
           </div>
 
-          <div class="section-card" id="experience">
+          <div class="section-card reveal" id="experience">
             <div class="section-head">
               <h2>Experience</h2>
             </div>
             <div class="experience-grid">
-              <div class="exp-card">
+              <div class="exp-card reveal">
                 <div class="exp-top">
                   <h3><a href="https://www.pfizer.com/" target="_blank" rel="noopener">Pfizer</a></h3>
                   <div class="meta">2025–Present</div>
@@ -437,7 +468,8 @@
                 <div class="muted">Senior Scientist</div>
                 <p>Focused on pharmaceutical development and crystallization-relevant process science.</p>
               </div>
-              <div class="exp-card">
+
+              <div class="exp-card reveal">
                 <div class="exp-top">
                   <h3><a href="https://www.imperial.ac.uk/chemical-engineering/" target="_blank" rel="noopener">Imperial College London</a></h3>
                   <div class="meta">Dec 2023–Present</div>
@@ -445,7 +477,8 @@
                 <div class="muted">Honorary Research Associate</div>
                 <p>Ongoing academic affiliation connected to crystallization, biomolecular systems, and collaborative research activity.</p>
               </div>
-              <div class="exp-card">
+
+              <div class="exp-card reveal">
                 <div class="exp-top">
                   <h3><a href="https://cheme.mit.edu/" target="_blank" rel="noopener">Massachusetts Institute of Technology</a></h3>
                   <div class="meta">Sep 2023–2025</div>
@@ -453,7 +486,8 @@
                 <div class="muted">Postdoctoral Research Associate in <a href="https://myersongroup.mit.edu/" target="_blank" rel="noopener">Professor Allan Myerson’s Group</a></div>
                 <p>Worked on continuous bio-pharmaceutical crystallization manufacturing for monoclonal antibodies and continuous drug-substance manufacturing from biomass-derived building blocks.</p>
               </div>
-              <div class="exp-card">
+
+              <div class="exp-card reveal">
                 <div class="exp-top">
                   <h3><a href="https://www.imperial.ac.uk/chemical-engineering/" target="_blank" rel="noopener">Imperial College London</a></h3>
                   <div class="meta">Jan 2022–Aug 2023</div>
@@ -461,7 +495,8 @@
                 <div class="muted">Research Associate in <a href="https://www.imperial.ac.uk/a-z-research/surfaces-and-particle-engineering/" target="_blank" rel="noopener">Professor Jerry Y. Y. Heng’s Group</a></div>
                 <p>Led amino acid, peptide, and biomolecule crystallization and manufacturing research, combining experiments with molecular modeling in projects supported by Eli Lilly and EPSRC.</p>
               </div>
-              <div class="exp-card">
+
+              <div class="exp-card reveal">
                 <div class="exp-top">
                   <h3><a href="https://www.imperial.ac.uk/chemical-engineering/" target="_blank" rel="noopener">Imperial College London</a></h3>
                   <div class="meta">2017–2021</div>
@@ -477,7 +512,7 @@
 
     <section id="research">
       <div class="wrap">
-        <div class="section-card">
+        <div class="section-card reveal">
           <div class="section-head">
             <h2>Research Areas</h2>
           </div>
@@ -502,32 +537,37 @@
 
     <section id="publications">
       <div class="wrap">
-        <div class="section-card">
+        <div class="section-card reveal">
           <div class="section-head">
             <h2>Selected Publications</h2>
           </div>
           <div class="grid-2">
-            <article class="pub">
+            <article class="pub reveal">
               <h3><a href="https://pubmed.ncbi.nlm.nih.gov/39582986/" target="_blank" rel="noopener">Predicting the solubility of amino acids and peptides with the SAFT-γ Mie approach</a></h3>
               <p><strong>2024</strong> · Demonstrates a modeling-driven approach for understanding and predicting biomolecular solubility.</p>
             </article>
-            <article class="pub">
+
+            <article class="pub reveal">
               <h3><a href="https://www.sciencedirect.com/science/article/pii/S0167732224007980" target="_blank" rel="noopener">Sequence-dependent dipeptide solubility in ethanol–water and DMSO–water solutions</a></h3>
               <p><strong>2024</strong> · Highlights solvent effects and the thermodynamic basis of peptide solubility behavior.</p>
             </article>
-            <article class="pub">
+
+            <article class="pub reveal">
               <h3><a href="https://pubs.acs.org/doi/10.1021/acs.cgd.2c01229" target="_blank" rel="noopener">The effect of chain length and conformation on the nucleation of glycine homopeptides</a></h3>
               <p><strong>2023</strong> · Connects peptide chain length, molecular conformation, and primary nucleation behavior during crystallization.</p>
             </article>
-            <article class="pub">
+
+            <article class="pub reveal">
               <h3><a href="https://spiral.imperial.ac.uk/server/api/core/bitstreams/e55f546f-e9c2-482c-a03a-730ba64ce049/content" target="_blank" rel="noopener">Templated crystallization of glycine homopeptides: experimental and computational developments</a></h3>
               <p><strong>2023</strong> · Combines experimental and computational perspectives on templated peptide crystallization.</p>
             </article>
-            <article class="pub">
+
+            <article class="pub reveal">
               <h3><a href="https://pubmed.ncbi.nlm.nih.gov/34436909/" target="_blank" rel="noopener">Triglycine adopts a polyproline II conformation in its hydrated crystal form</a></h3>
               <p><strong>2021</strong> · Reveals the role of water and crystal hydration in peptide conformation and crystallization.</p>
             </article>
-            <article class="pub">
+
+            <article class="pub reveal">
               <h3><a href="https://www.sciencedirect.com/science/article/pii/S1383586621000605" target="_blank" rel="noopener">Biopurification of monoclonal antibody through crystallisation</a></h3>
               <p><strong>2021</strong> · Demonstrates crystallization as a separation and biomanufacturing tool for biologics.</p>
             </article>
@@ -538,32 +578,37 @@
 
     <section id="awards">
       <div class="wrap">
-        <div class="section-card">
+        <div class="section-card reveal">
           <div class="section-head">
             <h2>Awards</h2>
           </div>
           <div class="grid-2">
-            <article class="service">
+            <article class="service reveal">
               <h3><a href="https://cheme.mit.edu/" target="_blank" rel="noopener">Rising Star in ChemE Program</a></h3>
               <p><strong>2024</strong> · MIT recognition</p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3><a href="https://pubs.acs.org/doi/10.1021/acs.cgd.2c01229" target="_blank" rel="noopener">OPR&amp;D highlights from the literature</a></h3>
               <p><strong>2023</strong> · Recognition associated with <em>Crystal Growth &amp; Design</em> paper</p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3><a href="https://www.imperial.ac.uk/admin-services/early-career-researcher-institute/networks-events-and-funds/ecri-funds/julia-higgins-fund/" target="_blank" rel="noopener">Dame Julia Higgins Postdoc Collaborative Research Fund</a></h3>
               <p><strong>2022</strong> · Imperial College London collaborative research funding.</p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3><a href="https://bacg.org.uk/" target="_blank" rel="noopener">Young Scientist Award</a></h3>
               <p><strong>2022</strong> · Award from the British Association for Crystal Growth.</p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3><a href="https://www.icheme.org/knowledge-networks/communities/special-interest-groups/particle-technology/events/0304-03-22-early-career-international-particle-technology-forum-2022/" target="_blank" rel="noopener">Highly Commended Prize, Young Researcher Award Presentation</a></h3>
               <p><strong>2022</strong> · Early Career International Particle Technology Forum.</p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3><a href="https://admin1.journals.elsevier.com/media/yjqd52ef/2203100800_particuology-outstanding-reviewer-award-2021.pdf" target="_blank" rel="noopener">Outstanding Reviewer Award, Particuology</a></h3>
               <p><strong>2022</strong> · Reviewer recognition listed in the CV and public award announcement.</p>
             </article>
@@ -574,32 +619,37 @@
 
     <section id="talks">
       <div class="wrap">
-        <div class="section-card">
+        <div class="section-card reveal">
           <div class="section-head">
-            <h2>Talks & Conference Presentations</h2>
+            <h2>Talks &amp; Conference Presentations</h2>
           </div>
           <div class="grid-3">
-            <article class="talk">
+            <article class="talk reveal">
               <h3><a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2024/proceeding/session/continuous-crystallization-processes" target="_blank" rel="noopener">AIChE 2024</a></h3>
               <p>A Case Study for Polymorph Control of Indomethacin in MSMPR Crystallizers.</p>
             </article>
-            <article class="talk">
+
+            <article class="talk reveal">
               <h3><a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2023/proceeding/session/solid-form-characterization-and-development-cocrystals-salts-solvates-polymorphs-and-beyond" target="_blank" rel="noopener">AIChE 2023</a></h3>
               <p>Exploring the Peptide Conformation Change during the Dehydration Process: A Case Study of Triglycine Dihydrate.</p>
             </article>
-            <article class="talk">
+
+            <article class="talk reveal">
               <h3><a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2023/proceeding/session/crystallization-and-precipitation-pharmaceutical-and-biological-molecules" target="_blank" rel="noopener">AIChE 2023</a></h3>
               <p>The Relationship between Flexible Peptide Conformation (from unfolded PPII to fully extended beta-sheet) and Crystallisation Conditions.</p>
             </article>
-            <article class="talk">
+
+            <article class="talk reveal">
               <h3><a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2023/proceeding/session/crystallization-and-precipitation-pharmaceutical-and-biological-molecules" target="_blank" rel="noopener">AIChE 2023</a></h3>
               <p>Two new hydrate morphologies formed by the self-assembly of di-phenylalanine in ethanol and acetone.</p>
             </article>
-            <article class="talk">
+
+            <article class="talk reveal">
               <h3><a href="https://bacg.org.uk/" target="_blank" rel="noopener">BACG 2022</a></h3>
               <p>The relationship between unfolded conformation and crystallization conditions of glycine homopeptides.</p>
             </article>
-            <article class="talk">
+
+            <article class="talk reveal">
               <h3><a href="https://proceedings.aiche.org/conferences/aiche-annual-meeting/2020/proceeding/session/thermophysical-properties-and-phase-behavior-ii-complex-systems" target="_blank" rel="noopener">AIChE 2020</a></h3>
               <p>The Role of Water in the Crystallization and Nucleation of Glycine Homopeptides.</p>
             </article>
@@ -610,27 +660,30 @@
 
     <section id="service">
       <div class="wrap">
-        <div class="section-card">
+        <div class="section-card reveal">
           <div class="section-head">
-            <h2>Editorial & Professional Service</h2>
+            <h2>Editorial &amp; Professional Service</h2>
           </div>
           <div class="grid-2">
-            <article class="service">
+            <article class="service reveal">
               <h3>Editorial Roles</h3>
               <p><a href="https://www.mdpi.com/about/announcements/13574" target="_blank" rel="noopener">Early Career Editorial Board Member, <em>Crystals</em></a></p>
               <p><a href="https://www.mdpi.com/journal/applsci/special_issues/M7OBGIL62K" target="_blank" rel="noopener">Guest Editor, Applied Sciences Special Issue</a></p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3>Reviewer Activity</h3>
               <p><a href="https://www.sciencedirect.com/journal/particuology" target="_blank" rel="noopener">Particuology</a> · <a href="https://www.sciencedirect.com/journal/journal-of-molecular-liquids" target="_blank" rel="noopener">Journal of Molecular Liquids</a></p>
               <p><a href="https://www.sciencedirect.com/journal/separation-and-purification-technology" target="_blank" rel="noopener">Separation and Purification Technology</a> · <a href="https://www.nature.com/ncomms/" target="_blank" rel="noopener">Nature Communications</a></p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3>Professional Communities</h3>
               <p><a href="https://bacg.org.uk/" target="_blank" rel="noopener">BACG committee</a> · <a href="https://www.acs.org/" target="_blank" rel="noopener">ACS</a></p>
               <p><a href="https://www.aiche.org/" target="_blank" rel="noopener">AIChE</a> · Doctorate Association</p>
             </article>
-            <article class="service">
+
+            <article class="service reveal">
               <h3>Community Engagement</h3>
               <p><a href="https://www.imperial.ac.uk/chemical-engineering/" target="_blank" rel="noopener">ChemEng Post-Doc Committee at Imperial College London</a></p>
               <p>Founder of 2020 Round Table · Redwood Academy</p>
@@ -642,18 +695,19 @@
 
     <section id="contact">
       <div class="wrap">
-        <div class="section-card">
+        <div class="section-card reveal">
           <div class="section-head">
-            <h2>Profiles & External Links</h2>
+            <h2>Profiles &amp; External Links</h2>
           </div>
           <div class="grid-2">
-            <article class="contact-card">
+            <article class="contact-card reveal">
               <h3>Academic profiles</h3>
               <p><a href="https://profiles.imperial.ac.uk/m.guo17" target="_blank" rel="noopener">Imperial College London profile</a></p>
               <p><a href="https://orcid.org/0000-0001-5957-5915" target="_blank" rel="noopener">ORCID</a></p>
               <p><a href="https://scholar.google.com/citations?hl=en&user=98tgkY8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></p>
             </article>
-            <article class="contact-card">
+
+            <article class="contact-card reveal">
               <h3>Professional presence</h3>
               <p><a href="https://uk.linkedin.com/in/mingxia-guo-8a4236190" target="_blank" rel="noopener">LinkedIn</a></p>
               <p>Email: <span class="muted">add preferred public contact here</span></p>
@@ -670,5 +724,30 @@
       Built as a hybrid academic–industry website draft for Mingxia Guo. Update preferred public contact details and image source before publishing.
     </div>
   </footer>
+
+  <script>
+    const revealTargets = document.querySelectorAll('.reveal');
+
+    revealTargets.forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min((index % 6) * 0.08, 0.4)}s`;
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    revealTargets.forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
