@@ -85,15 +85,6 @@ You can edit the following parts inside `index.html`:
 * **Editorial & Professional Service**
 * **Links / Contact**
 
-## Profile image
-
-The profile image is currently linked from a public web source. For a more stable site, it is better to save the image locally in the repository and update the HTML to point to the local file.
-
-Example:
-
-```html
-<img class="portrait" src="profile.jpg" alt="Portrait of Mingxia Guo" />
-```
 
 ## Adding a CV
 
